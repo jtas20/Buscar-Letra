@@ -65,6 +65,11 @@ const fetchLyrics = async (artist, songTitle) => {
             <p class="lyrics">${lyric}</p>
         </li>
     `
+
+    prevAndNextContainer.innerHTML = `
+        <button class="btn" type="submit" id="btn_trans" onclick="translateLyric()">Traduzir</button>
+    `
+    translateLyric(artist, songTitle)
 }
 
 songsContainer.addEventListener('click', event => {
