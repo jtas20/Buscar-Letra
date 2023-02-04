@@ -6,6 +6,37 @@
 	box-sizing: border-box;
 }
 
+.spinner{
+  border: 8px solid rgb(0, 0, 0, .1);
+  border-left-color: #5500ff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner{
+  to {transform: rotate(360deg);}
+}
+
+.loading{
+  color: #5500ff;
+  font-weight: bolder;
+  background-color: #ffffff;
+  position: fixed;
+  width: 100%;
+  height: 100%;   
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading label {
+  font-size: 22px;
+}
+
+
 li {
   list-style: none;
 }

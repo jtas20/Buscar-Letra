@@ -1,7 +1,8 @@
 function translateLyric(artist, songTitle){
     const btnTranlate = document.querySelector('#btn_trans');
     btnTranlate.addEventListener('click', function (){
-        
+        showLoading();
+
         const apiVagalume = 'https://api.vagalume.com.br/search.php?'
         const apiKey = '28cb27e6d6a282e7ae827b052e4ab2b4'
 
@@ -25,14 +26,17 @@ function translateLyric(artist, songTitle){
                 `
                 BackLyric(artist, songTitle);
             })
+            hideLoading();
     })
 }
 
 function BackLyric(artist, songTitle){
+    showLoading();
     const btnBack = document.querySelector('#BackLyric');
     btnBack.addEventListener('click', function (){
         fetchLyrics(artist, songTitle)
     })
+    hideLoading();
 }
 
 
