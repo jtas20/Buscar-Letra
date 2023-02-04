@@ -95,6 +95,7 @@ form button:hover{
 }
 
 .btn {
+  font-weight: bold;
   background-color: #5500ff;
   border: 0;
   border-radius: 10px;
@@ -112,22 +113,25 @@ form button:hover{
 }
 
 .song{
+  color: rgb(255, 255, 255);
+  font-size: 120%;
+  font-weight: bolder;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin: 10px 0;
 }
 
-.prev-and-next-container h2 {
+.transAndOriginalContainer h2 {
   font-weight: 300;
 }
 
-.prev-and-next-container {
+.transAndOriginalContainer {
   display: flex;
   justify-content: center;
 }
 
-.prev-and-next-container button {
+.transAndOriginalContainer button {
   transform: scale(1.3);
   margin: 15px;
 }
@@ -149,6 +153,9 @@ form button:hover{
 }
 
 .lyrics {
+  color: rgb(255, 255, 255);
+  font-size: 125%;
+  font-weight: bolder;
   margin-top: 20px;
   line-height: 1.5;
 }

@@ -1,15 +1,9 @@
 const form = document.querySelector('#form');
 const searchInput = document.querySelector('#search');
 const songsContainer = document.querySelector('#songs-container');
-const prevAndNextContainer = document.querySelector("#prev-and-next-container");
+const transAndOriginalContainer = document.querySelector("#transAndOriginalContainer");
 
 const apiUrl = 'https://api.lyrics.ovh';
-
-const getMoreSongs = async url => {
-    const response = await fetch(`https://cors-anywhere.herokuapp.com/${url}`)
-    const data = await response.json()
-    insertSongsIntoPage(data)
-}
 
 const insertSongsIntoPage = songsInfo => {
     songsContainer.innerHTML = (songsInfo.data.map(song => `
@@ -19,16 +13,7 @@ const insertSongsIntoPage = songsInfo => {
     </li>
     `).join(''))
 
-
-    if(songsInfo.prev || songsInfo.next){
-        prevAndNextContainer.innerHTML = `
-            ${songsInfo.prev ? `<button class="btn" onClick="getMoreSongs('${songsInfo.prev}')">Anteriores</button>` : '' }
-            ${songsInfo.next ? `<button class="btn" onClick="getMoreSongs('${songsInfo.next}')">Próximas</button>` : '' }
-        `
-        return
-    }
-
-    prevAndNextContainer.innerHTML = ''
+    transAndOriginalContainer.style.display = 'none';
 }
 
 const fetchSongs = async term => {
@@ -66,7 +51,8 @@ const fetchLyrics = async (artist, songTitle) => {
         </li>
     `
 
-    prevAndNextContainer.innerHTML = `
+    transAndOriginalContainer.style.display = 'flex';
+    transAndOriginalContainer.innerHTML = `
         <button class="btn" type="submit" id="btn_trans" onclick="translateLyric()">Traduzir</button>
     `
     translateLyric(artist, songTitle)
@@ -79,8 +65,7 @@ songsContainer.addEventListener('click', event => {
        const artist = clickedElement.getAttribute('data-artist')
        const songTitle = clickedElement.getAttribute('data-song-title')
 
-
-       prevAndNextContainer.innerHTML = ''
+       transAndOriginalContainer.innerHTML = ''
        fetchLyrics(artist, songTitle)
     }
 })

@@ -19,8 +19,8 @@ function translateLyric(artist, songTitle){
                     </li>
                 `
 
-                const prevAndNextContainer = document.querySelector("#prev-and-next-container");
-                prevAndNextContainer.innerHTML = `
+                const transAndOriginalContainer = document.querySelector("#transAndOriginalContainer");
+                transAndOriginalContainer.innerHTML = `
                     <button class="btn" id='BackLyric' type="submit" onClick="BackLyric()">Original</button>
                 `
                 BackLyric(artist, songTitle);
