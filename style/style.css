@@ -190,3 +190,15 @@ form button:hover{
   margin-top: 20px;
   line-height: 1.5;
 }
+
+/*android, IOS*/
+@media(max-width: 930px){
+  header{
+    height: 260px;
+    padding: 5px;
+  }
+
+  .song-artist, button, h2, .lyrics{
+    padding: 5px;
+  }
+}
