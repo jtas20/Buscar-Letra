@@ -32,8 +32,9 @@ form.addEventListener('submit', event => {
 
     event.preventDefault()
 
-    const searchTerm = searchInput.value.trim()
-
+    const searchTerm = searchInput.value
+    removeAcento(searchTerm)
+    
     if(!searchTerm) {
         songsContainer.innerHTML = `<li class="warning-message">Por Favor, Digite Um Termo Válido.</li>`
         showBtn();
@@ -41,7 +42,6 @@ form.addEventListener('submit', event => {
         return
     }
 
-    fetchSongs(searchTerm)
 });
 
 const apiVagalume = 'https://api.vagalume.com.br/search.php?'
@@ -51,21 +51,31 @@ const fetchLyrics = async (artist, songTitle) => {
     showLoading();
     const response = await fetch(`${apiVagalume}art=${artist}&mus=${songTitle}&apikey=${apiKey}`)
     const data = await response.json()
-    const lyric = data.mus[0].text.replace(/(\r\n|\r|\n)/g, '<br>');
 
-    songsContainer.innerHTML = `
+    try{
+        const lyric = data.mus[0].text.replace(/(\r\n|\r|\n)/g, '<br>');
+
+        songsContainer.innerHTML = `
         <li class="lyrics-container">
             <h2><strong>${songTitle}</strong> - ${artist}</h2>
             <p class="lyrics">${lyric}</p>
         </li>
-    `
+        `
 
-    transAndOriginalContainer.style.display = 'flex';
-    transAndOriginalContainer.innerHTML = `
-        <button class="btn" type="submit" id="btn_trans" onclick="translateLyric()">Traduzir</button>
-    `
-    translateLyric(artist, songTitle)
-    hideLoading();
+        transAndOriginalContainer.style.display = 'flex';
+        transAndOriginalContainer.innerHTML = `
+            <button class="btn" type="submit" id="btn_trans" onclick="translateLyric()">Traduzir</button>
+        `
+        
+        validation(artist, songTitle)
+        translateLyric(artist, songTitle)
+        hideLoading();
+
+    }catch{
+        songsContainer.innerHTML = ''
+        hideLoading()
+        songsContainer.innerHTML = `<li class="warning-message">Letra Não Encontrada :(</li>`
+    }  
 }
 
 songsContainer.addEventListener('click', event => {
