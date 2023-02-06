@@ -1,5 +1,5 @@
 # Buscar-Letras
-Aplicação Web Para Buscar Letra De Musicas Atraves de um serviço de api...
+Aplicação Web Para Buscar Letra e Tradução De Musicas Atraves de um serviço de api...
 
 Hospedagem:
 
