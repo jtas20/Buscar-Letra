@@ -37,6 +37,7 @@ form.addEventListener('submit', event => {
     
     if(!searchTerm) {
         songsContainer.innerHTML = `<li class="warning-message">Por Favor, Digite Um Termo Válido.</li>`
+        transAndOriginalContainer.style.display = 'none'
         showBtn();
         hideLoading();
         return
